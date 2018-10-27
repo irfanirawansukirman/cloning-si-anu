@@ -17,6 +17,7 @@ object Injection {
         val localDatabase = GitsAppDatabase.getInstance(context)
 
         return GitsRepository.getInstance(GitsRemoteDataSource,
-                GitsLocalDataSource.getInstance(AppExecutors(), localDatabase.movieDao()))
+                GitsLocalDataSource.getInstance(AppExecutors(),
+                        localDatabase.userDao()))
     }
 }

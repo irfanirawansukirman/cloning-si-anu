@@ -26,6 +26,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".mvvm.messages.MessagesActivity" />
+        <activity android:name=".mvvm.messagedetail.MessageDetailActivity" />
+        <activity android:name=".mvvm.userprofile.UserProfileActivity" />
+        <activity android:name=".mvvm.messagecompose.MessageComposeActivity"></activity>
     </application>
 
 </manifest>

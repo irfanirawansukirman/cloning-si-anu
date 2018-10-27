@@ -1,6 +1,10 @@
 package id.gits.gitsmvvmkotlin.data.model
 
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 
 /**
@@ -53,3 +57,13 @@ data class CountryDialCode(
         @SerializedName("name")
         val name: String? = ""
 )
+
+@Entity(tableName = "userlogin")
+data class UserLogin(
+        @PrimaryKey(autoGenerate = true)
+        var id: Int? = null,
+        @ColumnInfo(name = "token")
+        var token: String? = null,
+        @ColumnInfo(name = "user")
+        var user: String? = null
+) : Serializable

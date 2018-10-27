@@ -5,7 +5,6 @@ import id.gits.gitsmvvmkotlin.BuildConfig
 import id.gits.gitsmvvmkotlin.GitsApplication
 import id.gits.gitsmvvmkotlin.base.BaseApiModel
 import id.gits.gitsmvvmkotlin.data.model.Login
-import id.gits.gitsmvvmkotlin.data.model.Movie
 import io.reactivex.Observable
 import okhttp3.Cache
 import okhttp3.OkHttpClient
@@ -24,9 +23,6 @@ import java.util.concurrent.TimeUnit
  */
 
 interface GitsApiService {
-
-    @GET("3/discover/movie?api_key=1b2f29d43bf2e4f3142530bc6929d341&sort_by=popularity.desc")
-    fun getMovies(): Observable<BaseApiModel<List<Movie>>>
 
     /**
      * User login service

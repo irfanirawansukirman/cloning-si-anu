@@ -4,6 +4,7 @@ import android.app.Application
 import com.google.gson.Gson
 import id.co.gits.gitsbase.BaseViewModel
 import id.gits.gitsmvvmkotlin.data.model.Login
+import id.gits.gitsmvvmkotlin.data.model.UserLogin
 import id.gits.gitsmvvmkotlin.data.source.GitsDataSource
 import id.gits.gitsmvvmkotlin.data.source.GitsRepository
 import id.gits.gitsmvvmkotlin.util.SingleLiveEvent
@@ -29,7 +30,8 @@ class LoginViewModel(application: Application, private val repository: GitsRepos
             }
 
             override fun onSuccess(data: Login) {
-                showLogDebug("DATA", Gson().toJson(data))
+                val userLogin = UserLogin(0, data.token, Gson().toJson(data.user))
+                saveUserData(userLogin)
             }
 
             override fun onFinish() {
@@ -42,5 +44,13 @@ class LoginViewModel(application: Application, private val repository: GitsRepos
                 }
             }
         })
+    }
+
+    fun saveUserData(data: UserLogin) {
+        if (data != null){
+            repository.localDataSource.saveUser(data)
+
+            eventStateNavigation.call()
+        }
     }
 }

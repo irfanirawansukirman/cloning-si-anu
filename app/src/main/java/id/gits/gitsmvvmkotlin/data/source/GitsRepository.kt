@@ -1,6 +1,7 @@
 package id.gits.gitsmvvmkotlin.data.source
 
 import id.gits.gitsmvvmkotlin.data.model.Login
+import id.gits.gitsmvvmkotlin.data.model.UserLogin
 import id.gits.gitsmvvmkotlin.data.source.local.GitsLocalDataSource
 import id.gits.gitsmvvmkotlin.data.source.remote.GitsRemoteDataSource
 
@@ -10,6 +11,34 @@ import id.gits.gitsmvvmkotlin.data.source.remote.GitsRemoteDataSource
 
 open class GitsRepository(val remoteDataSource: GitsRemoteDataSource,
                           val localDataSource: GitsLocalDataSource) : GitsDataSource {
+
+    override fun saveUser(data: UserLogin) {
+        localDataSource.saveUser(data)
+    }
+
+    override fun getUser(callback: GitsDataSource.GetLocalUserCallback) {
+        localDataSource.getUser(object : GitsDataSource.GetLocalUserCallback{
+            override fun onShowProgressDialog() {
+                callback.onShowProgressDialog()
+            }
+
+            override fun onHideProgressDialog() {
+                callback.onHideProgressDialog()
+            }
+
+            override fun onSuccess(data: UserLogin) {
+                callback.onSuccess(data)
+            }
+
+            override fun onFinish() {
+                callback.onFinish()
+            }
+
+            override fun onFailed(statusCode: Int, errorMessage: String?) {
+                callback.onFailed(statusCode, errorMessage)
+            }
+        })
+    }
 
     override fun postUserLogin(identifier: String, password: String, callback: GitsDataSource.PostUserLoginCallback) {
         remoteDataSource.postUserLogin(identifier, password, object : GitsDataSource.PostUserLoginCallback{

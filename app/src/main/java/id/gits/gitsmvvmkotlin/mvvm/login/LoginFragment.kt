@@ -1,6 +1,7 @@
 package id.gits.gitsmvvmkotlin.mvvm.login
 
 import android.arch.lifecycle.Observer
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import id.gits.gitsmvvmkotlin.util.gone
 import id.gits.gitsmvvmkotlin.util.putArgs
 import id.gits.gitsmvvmkotlin.util.visible
 import kotlinx.android.synthetic.main.login_fragment.*
+import id.gits.gitsmvvmkotlin.mvvm.messages.MessagesActivity
 
 /**
  * Dibuat oleh Irfan Irawan Sukirman
@@ -31,6 +33,10 @@ class LoginFragment : BaseFragment() {
                     disableButtonSubmit(isVisible!!)
                     disableLoginForm(isVisible)
                     showProgress(isVisible)
+                })
+                eventStateNavigation.observe(this@LoginFragment, Observer {
+                    startActivity(Intent(context, MessagesActivity::class.java))
+                    (activity as LoginActivity).finish()
                 })
             }
         }

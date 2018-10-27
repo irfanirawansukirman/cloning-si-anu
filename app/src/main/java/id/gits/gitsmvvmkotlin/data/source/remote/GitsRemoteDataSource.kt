@@ -1,6 +1,7 @@
 package id.gits.gitsmvvmkotlin.data.source.remote
 
 import id.gits.gitsmvvmkotlin.data.model.Login
+import id.gits.gitsmvvmkotlin.data.model.UserLogin
 import id.gits.gitsmvvmkotlin.data.source.GitsDataSource
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -9,6 +10,14 @@ import io.reactivex.schedulers.Schedulers
  * Created by irfanirawansukirman on 26/01/18.
  */
 object GitsRemoteDataSource : GitsDataSource {
+
+    override fun saveUser(data: UserLogin) {
+        // Empty state
+    }
+
+    override fun getUser(callback: GitsDataSource.GetLocalUserCallback) {
+        // Empty state
+    }
 
     override fun postUserLogin(identifier: String, password: String, callback: GitsDataSource.PostUserLoginCallback) {
         GitsApiService
