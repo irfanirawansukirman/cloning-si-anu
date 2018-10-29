@@ -258,7 +258,7 @@ class GitsHelper {
         // Server side constanta
         const val SERVER_CODE_404 = 404
         const val SERVER_ERROR_MESSAGE_DEFAULT = "Data not found"
-        const val BASE_IMAGE_URL_MOVIE_DB = "http://image.tmdb.org/t/p/w342"
+        const val BASE_IMAGE_URL_MOVIE_DB = "https://beta.proofn.com/v1"
 
         // Date format style
         // If you want convert to indonesia please using Locale("id", "ID") put into SimpleDateFormat

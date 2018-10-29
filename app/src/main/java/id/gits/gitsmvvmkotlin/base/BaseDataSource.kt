@@ -9,6 +9,7 @@ interface BaseDataSource {
         fun onShowProgressDialog()
         fun onHideProgressDialog()
         fun onSuccess(data: T)
+        fun onLoadDataFromLocal(data: T)
         fun onFinish()
         fun onFailed(statusCode: Int, errorMessage: String? = "")
     }

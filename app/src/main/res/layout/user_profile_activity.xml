@@ -1,9 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="id.gits.gitsmvvmkotlin.mvvm.userprofile.UserProfileActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-</android.support.constraint.ConstraintLayout>
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="imageUrl"
+            type="String" />
+
+        <variable
+            name="showProgress"
+            type="Boolean"/>
+
+        <variable
+            name="viewModel"
+            type="id.gits.gitsmvvmkotlin.mvvm.userprofile.UserProfileViewModel" />
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context="id.gits.gitsmvvmkotlin.mvvm.userprofile.UserProfileActivity">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar_userProfile"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimens_256dp"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="@color/colorPrimary"
+                app:expandedTitleMarginStart="@dimen/dimens_24dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <ImageView
+                    android:id="@+id/image_userProfile_backdrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/img_mountain"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    app:layout_collapseMode="parallax" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/cv_scrim_color" />
+
+                <include
+                    layout="@layout/toolbar_transparent"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    app:layout_collapseMode="pin" />
+            </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/mainWhite"
+            android:clipToPadding="false"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/dimens_16dp"
+                android:paddingTop="@dimen/dimens_80dp"
+                android:paddingRight="@dimen/dimens_16dp">
+
+                <include layout="@layout/user_profile_info" />
+
+                <include layout="@layout/user_profile_office" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+        <FrameLayout
+            android:id="@+id/frame_userProfile_imageContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_anchor="@+id/appbar_userProfile"
+            app:layout_anchorGravity="center|bottom">
+
+            <ImageView
+                android:id="@+id/image_userProfile"
+                android:layout_width="@dimen/dimens_96dp"
+                android:layout_height="@dimen/dimens_96dp"
+                android:scaleType="centerCrop"
+                app:imageCircleUrl="@{imageUrl}" />
+
+            <ImageView
+                android:layout_width="@dimen/dimens_32dp"
+                android:layout_height="@dimen/dimens_32dp"
+                android:layout_gravity="right|bottom"
+                android:background="@drawable/cv_fill_orange_16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="@dimen/dimens_4dp"
+                android:src="@drawable/ic_create"
+                android:tint="@color/mainWhite"
+                tools:ignore="RtlHardcoded" />
+        </FrameLayout>
+
+        <ProgressBar
+            android:visibility="@{showProgress == true ? View.VISIBLE : View.GONE}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/mainWhite"
+            android:padding="@dimen/dimens_168dp" />
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

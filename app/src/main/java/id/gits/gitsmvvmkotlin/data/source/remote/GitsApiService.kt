@@ -5,6 +5,8 @@ import id.gits.gitsmvvmkotlin.BuildConfig
 import id.gits.gitsmvvmkotlin.GitsApplication
 import id.gits.gitsmvvmkotlin.base.BaseApiModel
 import id.gits.gitsmvvmkotlin.data.model.Login
+import id.gits.gitsmvvmkotlin.data.model.Messages
+import id.gits.gitsmvvmkotlin.data.model.UserProfile
 import io.reactivex.Observable
 import okhttp3.Cache
 import okhttp3.OkHttpClient
@@ -12,10 +14,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 import java.util.concurrent.TimeUnit
 
 /**
@@ -36,6 +35,25 @@ interface GitsApiService {
     @POST("auth/login")
     fun postLogin(@Field("identifier") identifier: String,
                   @Field("password") password: String): Observable<Login>
+
+    /**
+     * Message list service
+     *
+     * @param limit => size list per page
+     *
+     * @return message list
+     */
+    @GET("messages/inbox")
+    fun getMessages(@Header("Authorization") auth: String,
+                    @Query("limit") limit: Int): Observable<List<Messages>>
+
+    /**
+     * User profile service
+     *
+     * @return user profile data
+     */
+    @GET("user/profile")
+    fun getUserProfile(@Header("Authorization") auth: String): Observable<UserProfile>
 
     companion object Factory {
 

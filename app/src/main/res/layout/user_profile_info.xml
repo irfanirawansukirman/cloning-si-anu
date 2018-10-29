@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/user_profile_activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cv_line_grey_light_round_4dp"
+        android:orientation="vertical"
+        android:padding="@dimen/dimens_8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/product_sans_bold"
+            android:text="User Information"
+            android:textSize="@dimen/size_14sp"
+            tools:text="@string/app_name" />
+
+        <TextView
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/product_sans_bold"
+            android:text="Email"
+            android:textSize="@dimen/size_14sp"
+            tools:text="@string/app_name" />
+
+        <TextView
+            android:id="@+id/text_userProfile_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimens_2dp"
+            android:fontFamily="@font/product_sans_regular"
+            android:textColor="@color/greySubtitle"
+            android:textSize="@dimen/size_16sp"
+            tools:text="@string/app_name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimens_8dp"
+            android:fontFamily="@font/product_sans_bold"
+            android:text="Phone Number"
+            android:textSize="@dimen/size_14sp"
+            tools:text="@string/app_name" />
+
+        <TextView
+            android:id="@+id/text_userProfile_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimens_2dp"
+            android:fontFamily="@font/product_sans_regular"
+            android:textColor="@color/greySubtitle"
+            android:textSize="@dimen/size_16sp"
+            tools:text="@string/app_name" />
+    </LinearLayout>
+</merge>

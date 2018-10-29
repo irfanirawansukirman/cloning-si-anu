@@ -6,14 +6,18 @@ import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.migration.Migration
 import android.content.Context
+import id.gits.gitsmvvmkotlin.data.model.LocalMessages
+import id.gits.gitsmvvmkotlin.data.model.Messages
 import id.gits.gitsmvvmkotlin.data.model.UserLogin
-import id.gits.gitsmvvmkotlin.data.source.local.movie.UserDao
+import id.gits.gitsmvvmkotlin.data.source.local.dao.MessagesDao
+import id.gits.gitsmvvmkotlin.data.source.local.dao.UserDao
 
 
-@Database(entities = [(UserLogin::class)], version = 1)
+@Database(entities = [UserLogin::class, LocalMessages::class], version = 2)
 abstract class GitsAppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
+    abstract fun messagesDao(): MessagesDao
 
     companion object {
 
@@ -30,11 +34,11 @@ abstract class GitsAppDatabase : RoomDatabase() {
         private fun buildDatabase(context: Context) =
                 Room.databaseBuilder(context.applicationContext,
                         GitsAppDatabase::class.java, "Movie.db")
-                        .addMigrations(MIGRATION_1_2)
+                        .addMigrations(MIGRATION_2_3)
                         .fallbackToDestructiveMigration()
                         .build()
 
-        private val MIGRATION_1_2: Migration = object : Migration(1, 2) {
+        private val MIGRATION_2_3: Migration = object : Migration(2, 3) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL("ALTER TABLE movie ADD COLUMN last_update INTEGER")
             }

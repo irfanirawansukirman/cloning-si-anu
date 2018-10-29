@@ -139,6 +139,7 @@ dependencies {
     implementation supportDependencies.kotlin
 
     // Arch Components
+    implementation googleLibraries.archRoomRx
     implementation googleLibraries.archRoomRuntime
     implementation googleLibraries.archLcExt
     implementation googleLibraries.archLcJava

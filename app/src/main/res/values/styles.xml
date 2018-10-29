@@ -7,7 +7,20 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
+        <!-- Customize your theme here. -->
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@color/colorPrimaryDark</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
+
+    <style name="UserProfileTheme" parent="AppTheme">
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+
+    <style name="ToolbarLight" parent="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <style name="ToolbarDark" parent="@style/ThemeOverlay.AppCompat.Dark"/>
 
     <style name="AppThemeDetail" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->

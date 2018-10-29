@@ -11,11 +11,11 @@ import id.co.gits.gitsdriver.utils.GitsHelper
 import id.gits.gitsmvvmkotlin.R
 import id.gits.gitsmvvmkotlin.base.BaseFragment
 import id.gits.gitsmvvmkotlin.databinding.LoginFragmentBinding
+import id.gits.gitsmvvmkotlin.mvvm.messages.MessagesActivity
 import id.gits.gitsmvvmkotlin.util.gone
 import id.gits.gitsmvvmkotlin.util.putArgs
 import id.gits.gitsmvvmkotlin.util.visible
 import kotlinx.android.synthetic.main.login_fragment.*
-import id.gits.gitsmvvmkotlin.mvvm.messages.MessagesActivity
 
 /**
  * Dibuat oleh Irfan Irawan Sukirman
@@ -34,9 +34,11 @@ class LoginFragment : BaseFragment() {
                     disableLoginForm(isVisible)
                     showProgress(isVisible)
                 })
-                eventStateNavigation.observe(this@LoginFragment, Observer {
-                    startActivity(Intent(context, MessagesActivity::class.java))
-                    (activity as LoginActivity).finish()
+                eventStateNavigation.observe(this@LoginFragment, Observer { state ->
+                    if (state!!) {
+                        startActivity(Intent(context, MessagesActivity::class.java))
+                        (activity as LoginActivity).finish()
+                    }
                 })
             }
         }
@@ -57,6 +59,8 @@ class LoginFragment : BaseFragment() {
 
     private fun setupLoginViewModel() {
         viewModel = viewBinding.viewModel!!
+
+        viewModel.getUserData()
     }
 
     private fun setupViewListener() {

@@ -18,6 +18,6 @@ object Injection {
 
         return GitsRepository.getInstance(GitsRemoteDataSource,
                 GitsLocalDataSource.getInstance(AppExecutors(),
-                        localDatabase.userDao()))
+                        localDatabase.userDao(), localDatabase.messagesDao()))
     }
 }

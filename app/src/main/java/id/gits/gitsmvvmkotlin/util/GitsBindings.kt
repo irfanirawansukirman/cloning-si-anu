@@ -7,7 +7,6 @@ import android.support.v4.text.PrecomputedTextCompat
 import android.support.v4.widget.TextViewCompat
 import android.support.v7.widget.AppCompatTextView
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.webkit.WebView
 import android.widget.ImageView
@@ -40,11 +39,24 @@ object GitsBindings {
                 ?: GitsHelper.Const.CURRENCY_VALUE_DEFAULT)
     }
 
+    @BindingAdapter("app:imageCircleUrl")
+    @JvmStatic
+    fun setImageCircleUrl(view: ImageView, imageCircleUrl: String?) {
+        GlideApp.with(view.context)
+                .load(R.drawable.img_user)
+                .transition(DrawableTransitionOptions.withCrossFade(
+                        GitsHelper.Const.GLIDE_FADE_ANIMATION_TIME_DEFAULT
+                ))
+                .apply(RequestOptions
+                        .circleCropTransform()
+                        .fallback(R.drawable.img_user))
+                .into(view)
+    }
+
     @SuppressLint("PrivateResource")
     @BindingAdapter("app:imageUrl")
     @JvmStatic
     fun setImageUrl(view: ImageView, imageUrl: String?) {
-        Log.d("LOREM ", imageUrl.toString())
         GlideApp.with(view.context)
                 .load(GitsHelper.Const.BASE_IMAGE_URL_MOVIE_DB + imageUrl)
                 .transition(DrawableTransitionOptions.withCrossFade(
@@ -76,7 +88,7 @@ object GitsBindings {
 
     @BindingAdapter("app:recyclerData", "app:orientationList")
     @JvmStatic
-    fun <T> setupRecyclerviewDatas(recyclerView: RecyclerView, recyclerData: MutableLiveData<List<T>>,
+    fun <T> setupRecyclerviewDatas(recyclerView: RecyclerView, recyclerData: MutableLiveData<ArrayList<T>>,
                                    orientationList: Int?) {
         try {
             if (recyclerView.adapter is GitsBindableAdapter<*>) {

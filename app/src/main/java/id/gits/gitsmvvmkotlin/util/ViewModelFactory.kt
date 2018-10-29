@@ -6,6 +6,8 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import id.gits.gitsmvvmkotlin.data.source.GitsRepository
 import id.gits.gitsmvvmkotlin.mvvm.login.LoginViewModel
+import id.gits.gitsmvvmkotlin.mvvm.messages.MessagesViewModel
+import id.gits.gitsmvvmkotlin.mvvm.userprofile.UserProfileViewModel
 
 /**
  * Created by irfanirawansukirman on 26/01/18.
@@ -22,6 +24,10 @@ class ViewModelFactory private constructor(
                 when {
                     isAssignableFrom(LoginViewModel::class.java) ->
                         LoginViewModel(mApplication, gitsRepository)
+                    isAssignableFrom(MessagesViewModel::class.java) ->
+                        MessagesViewModel(mApplication, gitsRepository)
+                    isAssignableFrom(UserProfileViewModel::class.java) ->
+                        UserProfileViewModel(mApplication, gitsRepository)
                     else ->
                         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
                 }
